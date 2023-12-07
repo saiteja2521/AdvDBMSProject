@@ -4,7 +4,7 @@
 
 #For the code provided, we have installed Hadoop through Cloudera and tested the code
 
-Before starting, we need set name node and up the server and required nodes (hive, hdfs, mapreduce, spark)
+**#Before starting, we need set name node and up the server and required nodes (hive, hdfs, mapreduce, spark)**
 
 
 **#copy file from local to HDFS by specifying where to save**
