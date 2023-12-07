@@ -86,3 +86,13 @@ select sum(area_purchased) as area,property_type, city from facttable a, dim_pro
 #instructions to run queries through Spark
 
 spark-shell
+
+import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.sql.hive.HiveContext
+
+val conf = new SparkConf().setAppName("HiveWithSpark")
+val sc = new SparkContext(conf)
+val hiveContext = new HiveContext(sc)
+
+val results = hiveContext.sql("SELECT * FROM your_hive_database.your_hive_table")
+results.show()n
