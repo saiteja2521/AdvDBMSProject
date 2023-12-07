@@ -6,8 +6,6 @@
 
 Before starting, we need set name node and up the server and required nodes (hive, hdfs, mapreduce, spark)
 
-![Uploading Screenshot 2023-10-28 170309.png…]()
-
 
 **#copy file from local to HDFS by specifying where to save**
 
