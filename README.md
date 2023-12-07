@@ -4,6 +4,11 @@
 
 #For the code provided, we have installed Hadoop through Cloudera and tested the code
 
+Before starting, we need set name node and up the server and required nodes (hive, hdfs, mapreduce, spark)
+
+![Uploading Screenshot 2023-10-28 170309.png…]()
+
+
 **#copy file from local to HDFS by specifying where to save**
 
 sudo -u hdfs hadoop fs -put Real_Estate_S.csv /Advdbmspro
@@ -73,7 +78,7 @@ select sum(area_purchased) as area,property_type, city from facttable a, dim_pro
 
 
 
-#instructions to run queries through Hive
+**#instructions to run queries through Hive to check runtime**
 
 use advdbmspro;
 
@@ -83,7 +88,7 @@ select sum(area_purchased) as area,property_type, city from facttable a, dim_pro
 
 
 
-#instructions to run queries through Spark
+**#instructions to run queries through Spark to check runtime**
 
 spark-shell
 
@@ -94,5 +99,20 @@ val conf = new SparkConf().setAppName("HiveWithSpark")
 val sc = new SparkContext(conf)
 val hiveContext = new HiveContext(sc)
 
-val results = hiveContext.sql("SELECT * FROM your_hive_database.your_hive_table")
-results.show()n
+val results = hiveContext.sql("select sum(area_purchased) as area,property_type, city from advdbmspro.realestate group by property_type, city order area desc;")
+val results1 = hiveContext.sql("select sum(area_purchased) as area,property_type, city from advdbmspro.facttable a, advdbmspro.dim_property b where a.property_id = b.property_id group by property_type, city order area desc;")
+val results 2= hiveContext.sql("select sum(area_purchased) as area,property_type, city from advdbmspro.facttable a, advdbmspro.dim_property_partitioned_bucketed b where a.property_id = b.property_id group by property_type, city order area desc;")
+
+
+results.show()
+results1.show()
+results2.show()
+
+
+**#instructions to run queries through impala to check runtime**
+
+use advdbmspro;
+
+select sum(area_purchased) as area,property_type, city from realestate group by property_type, city order area desc;
+select sum(area_purchased) as area,property_type, city from facttable a, dim_property b where a.property_id = b.property_id group by property_type, city order area desc;
+select sum(area_purchased) as area,property_type, city from facttable a, dim_property_partitioned_bucketed b where a.property_id = b.property_id group by property_type, city order area desc;
