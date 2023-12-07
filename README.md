@@ -5,7 +5,7 @@
 #For the code provided, we have installed Hadoop through Cloudera and tested the code
 
 **#Before starting, we need set name node and up the server and required nodes (hive, hdfs, mapreduce, spark)**
-
+#Each task performed has results in github repo and as execution is performed in virtual box, so I was unable to bring whole setup to repo. One can use below instructions to run the code in Hadoop setup
 
 **#copy file from local to HDFS by specifying where to save**
 
@@ -25,6 +25,7 @@ hdfs dfs -chmod 777 /Advdbmspro/Real_Estate_S.csv
 
 **#setup hive session and create a database and create a table structure to handle csv file data in that database**
 
+hive
 create database advdbmspro;
 use advdbmspro;
 
